@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'daphne',
     'chat',
-    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,7 +124,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-WSGI_APPLICATION = "mychannels.asgi.application"
+# Daphne
+ASGI_APPLICATION = "mychannels.asgi.application"
+
+# Channels
 ASGI_APPLICATION = "mychannels.asgi.application"
 CHANNEL_LAYERS = {
     "default": {
