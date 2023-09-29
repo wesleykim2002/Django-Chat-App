@@ -1,5 +1,5 @@
 import json
-import jwt
+#import jwt
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 
@@ -34,23 +34,24 @@ class DeviceConsumer(AsyncJsonWebsocketConsumer):
         # )
 
     async def authenticate_device(self, data):
-        token = data["token"]
-        try:
-            decoded_payload = jwt.decode(token probs)
-            device_id = decoded_payload['device_id']
+        # token = data["token"]
+        # try:
+        #     decoded_payload = jwt.decode(token probs)
+        #     device_id = decoded_payload['device_id']
             
-            # Perform additional authentication checks if needed
+        #     # Perform additional authentication checks if needed
             
-            # If authenticated, acknowledge and welcome the device
-            await self.send(json.dumps({
-                'type': 'auth_success',
-                'message': 'Device authenticated successfully.'
-            }))
-        except (jwt.InvalidTokenError, OR DEVICE DOES NOT EXIST):
-            await self.send(json.dumps({
-                'type': 'auth_error',
-                'message': 'Authentication failed. Invalid token or device.'
-            }))
+        #     # If authenticated, acknowledge and welcome the device
+        #     await self.send(json.dumps({
+        #         'type': 'auth_success',
+        #         'message': 'Device authenticated successfully.'
+        #     }))
+        # except (jwt.InvalidTokenError, OR DEVICE DOES NOT EXIST):
+        #     await self.send(json.dumps({
+        #         'type': 'auth_error',
+        #         'message': 'Authentication failed. Invalid token or device.'
+        #     }))
+        pass
         
     async def handle_status_message(self, data):
         status_message = data["status"]
