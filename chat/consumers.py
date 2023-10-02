@@ -2,6 +2,7 @@ import json
 #import jwt
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
+from .serializers import *
 
 class DeviceConsumer(AsyncJsonWebsocketConsumer):
     async def connect(self):
@@ -54,14 +55,23 @@ class DeviceConsumer(AsyncJsonWebsocketConsumer):
         pass
         
     async def handle_status_message(self, data):
+        # TODO: Process and store the status message as needed
+
         status_message = data["status"]
-        # Process and store the status message as needed
-        pass
+        ser = StatusSerializer(data=data)
+        try:
+            ser.is_valid(raise_exception=True)
+        except Exception: pass         
+        
 
     async def handle_keep_alive(self, data):
+        # TODO: Handle keep-alive messages from devices
+
         keep_alive_message = data["message"]
-        # Handle keep-alive messages from devices
-        pass
+        ser = KeepAliveSerializer(data=data)
+        try:
+            ser.is_valid(raise_exception=True)
+        except Exception: pass      
 
     # Receive message from room group
     async def chat_message(self, event):
